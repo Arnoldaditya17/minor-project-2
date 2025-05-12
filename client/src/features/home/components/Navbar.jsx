@@ -1,6 +1,16 @@
-import React, { useState } from 'react';
-import { FaHeartbeat, FaShoppingCart, FaHome, FaInfoCircle, FaBars, FaTimes, FaCapsules } from 'react-icons/fa';
-import { useCart } from '../../product/context/CartContext';
+import React, { useState } from "react";
+import {
+  FaHeartbeat,
+  FaShoppingCart,
+  FaHome,
+  FaInfoCircle,
+  FaBars,
+  FaTimes,
+  FaCapsules,
+  FaClipboardList,
+} from "react-icons/fa";
+import { useCart } from "../../product/context/CartContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { cartItems } = useCart();
@@ -14,37 +24,74 @@ const Navbar = () => {
     <nav className="bg-white shadow-md w-full fixed top-0 left-0 right-0 z-10">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo & Title */}
-        <div className="flex items-center gap-2 text-2xl font-bold text-blue-600">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-2xl font-bold text-blue-600"
+        >
           <FaHeartbeat className="text-red-500" />
           MediBot
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-6 text-gray-700 text-lg">
-          <li className="flex items-center gap-1 hover:text-blue-600 cursor-pointer">
-            <FaHome /> Home
+          <li>
+            <Link
+              to="/"
+              className="flex items-center gap-1 hover:text-blue-600"
+            >
+              <FaHome /> Home
+            </Link>
           </li>
-          <li className="flex items-center gap-1 hover:text-blue-600 cursor-pointer py-1">
-            <FaCapsules /> Medicines
+          <li>
+            <Link
+              to="/products"
+              className="flex items-center gap-1 hover:text-blue-600"
+            >
+              <FaCapsules /> Medicines
+            </Link>
           </li>
-          <li className="flex items-center gap-1 hover:text-blue-600 cursor-pointer">
-            <FaInfoCircle /> About
+          <li>
+            <Link
+              to="/orders"
+              className="flex items-center gap-1 hover:text-blue-600"
+            >
+              <FaClipboardList /> Orders
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className="flex items-center gap-1 hover:text-blue-600"
+            >
+              <FaInfoCircle /> About
+            </Link>
           </li>
           <li className="relative">
-            <FaShoppingCart className="text-2xl text-gray-700 hover:text-blue-600 cursor-pointer" />
-            {cartItems.length > 0 && (
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
-                {cartItems.length}
-              </span>
-            )}
+            <Link to="/cart">
+              <FaShoppingCart className="text-2xl text-gray-700 hover:text-blue-600" />
+              {cartItems.length > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
           </li>
         </ul>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
-          <FaShoppingCart className="text-2xl text-gray-700 mr-4 hover:text-blue-600 cursor-pointer" />
-          <button onClick={toggleMenu} className="text-gray-700 hover:text-blue-600 focus:outline-none">
-            {isMenuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+          <Link to="/cart">
+            <FaShoppingCart className="text-2xl text-gray-700 mr-4 hover:text-blue-600" />
+          </Link>
+          <button
+            onClick={toggleMenu}
+            className="text-gray-700 hover:text-blue-600 focus:outline-none"
+          >
+            {isMenuOpen ? (
+              <FaTimes className="text-2xl" />
+            ) : (
+              <FaBars className="text-2xl" />
+            )}
           </button>
         </div>
       </div>
@@ -53,14 +100,41 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white py-2 px-4 shadow-inner">
           <ul className="flex flex-col space-y-3 text-gray-700 text-lg">
-            <li className="flex items-center gap-1 hover:text-blue-600 cursor-pointer py-1">
-              <FaHome /> Home
+            <li>
+              <Link
+                to="/"
+                className="flex items-center gap-1 hover:text-blue-600 py-1"
+                onClick={toggleMenu}
+              >
+                <FaHome /> Home
+              </Link>
             </li>
-            <li className="flex items-center gap-1 hover:text-blue-600 cursor-pointer py-1">
-              <FaCapsules /> Medicines
+            <li>
+              <Link
+                to="/products"
+                className="flex items-center gap-1 hover:text-blue-600 py-1"
+                onClick={toggleMenu}
+              >
+                <FaCapsules /> Medicines
+              </Link>
             </li>
-            <li className="flex items-center gap-1 hover:text-blue-600 cursor-pointer py-1">
-              <FaInfoCircle /> About
+            <li>
+              <Link
+                to="/orders"
+                className="flex items-center gap-1 hover:text-blue-600 py-1"
+                onClick={toggleMenu}
+              >
+                <FaClipboardList /> Orders
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="flex items-center gap-1 hover:text-blue-600 py-1"
+                onClick={toggleMenu}
+              >
+                <FaInfoCircle /> About
+              </Link>
             </li>
           </ul>
         </div>
