@@ -5,6 +5,7 @@ import Navbar from "./features/home/components/Navbar";
 import ProductPage from "./features/product/ProductPage";
 import HomePage from "./features/home/HomePage";
 import OrderPage from "./features/orders/OrderPage";
+import AboutPage from "./features/home/AboutPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/products" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/orders" element={<OrderPage />} />
+            <Route path="/about" element={<AboutPage/>}/>
           </Routes>
         </div>
       </Router>

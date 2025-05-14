@@ -3,18 +3,17 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const HomePage = () => {
   return (
-    <div className="w-full h-screen overflow-hidden">
+    
       <Carousel
         autoPlay
         infiniteLoop
         showThumbs={false}
         showStatus={false}
-        interval={3000}
-        className="rounded-none"
+        interval={2000}
       >
-        <div className="w-full h-screen">
+        <div className="w-full h-50 rounded-md">
           <img
-            src="https://media.istockphoto.com/id/1473559425/photo/female-medical-practitioner-reassuring-a-patient.jpg?s=612x612&w=0&k=20&c=kGbm-TE5qdppyyiteyip7_CzKLktyPrRuWD4Zz2EcqE="
+            src="./src/assets/images/WhatsApp Image 2025-05-14 at 13.10.41.jpeg"
             alt="Slide 1"
             className="object-cover w-full h-full"
           />
@@ -37,7 +36,6 @@ const HomePage = () => {
           <p className="legend">Level up your coding skills</p>
         </div>
       </Carousel>
-    </div>
   );
 };
 

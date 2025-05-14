@@ -67,15 +67,16 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="relative">
-            <Link to="/cart">
-              <FaShoppingCart className="text-2xl text-gray-700 hover:text-blue-600" />
-              {cartItems.length > 0 && (
-                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
-                  {cartItems.length}
-                </span>
-              )}
-            </Link>
-          </li>
+  <Link to="/cart" className="relative inline-block">
+    <FaShoppingCart className="text-2xl text-gray-700 hover:text-blue-600" />
+    {cartItems.length > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+        {cartItems.length}
+      </span>
+    )}
+  </Link>
+</li>
+
         </ul>
 
         {/* Mobile Menu Button */}
