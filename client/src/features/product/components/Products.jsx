@@ -16,7 +16,7 @@ const Products = ({ addToCart }) => {
         setFilteredProducts(response.data.results);
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 100);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);

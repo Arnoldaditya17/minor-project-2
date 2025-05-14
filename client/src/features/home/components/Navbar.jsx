@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   FaHeartbeat,
   FaShoppingCart,
@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { useCart } from "../../product/context/CartContext";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { cartItems } = useCart();
@@ -66,7 +67,25 @@ const Navbar = () => {
               <FaInfoCircle /> About
             </Link>
           </li>
-          <li className="relative">
+    
+<motion.li
+  className="relative"
+  animate={
+    cartItems.length > 0
+      ? { x: [0, -5, 5, -5, 5, 0] }
+      : { x: 0 }
+  }
+  transition={
+    cartItems.length > 0
+      ? {
+          duration: 0.6,
+          repeat: Infinity,
+          repeatDelay: 1.4,
+          ease: 'easeInOut',
+        }
+      : {}
+  }
+>
   <Link to="/cart" className="relative inline-block">
     <FaShoppingCart className="text-2xl text-gray-700 hover:text-blue-600" />
     {cartItems.length > 0 && (
@@ -75,14 +94,19 @@ const Navbar = () => {
       </span>
     )}
   </Link>
-</li>
+</motion.li>
 
         </ul>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
-          <Link to="/cart">
-            <FaShoppingCart className="text-2xl text-gray-700 mr-4 hover:text-blue-600" />
+          <Link to="/cart" className="relative inline-block mr-5">
+            <FaShoppingCart className="text-2xl text-gray-700 hover:text-blue-600" />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
           <button
             onClick={toggleMenu}
